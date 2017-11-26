@@ -1,17 +1,35 @@
 # README
 
-https://acmepizzacompany.herokuapp.com/
+**https://acmepizzacompany.herokuapp.com/**
 
 ## Thought Process
 
-I built the app using two models, User and Order, with no explicit association.
-
-Some assumptions I made from missing information:
-* Each order consists of one customer and one pizza. Because of this 1:1 association between pizza and customer, I combined them in one model, called "Order."
+Some assumptions I made about the functionality of the app from missing information:
+* Each order will consist of one customer and one pizza. (Because of this 1:1 association between pizza and customer, I combined them in one model called "Order.")
 * Each pizza can only have one type of topping.
 * Pizzas will be picked up on the same day they are ordered.
-* For the sake of demonstration, I did not use auth login. If I wanted to include it, I would use bCrypt and set up accounts for each person who worked at the pizzeria.
 
+I built the app using two models, `User` and `Order`, with no explicit association between the two.
+
+The `User` schema includes one property:
+* name: String (set to "Cashier", "Baker", "Manager")
+
+The `Order` schema includes the following properties:
+* name: String (customer name)
+* phone: String
+* pickup: String (time of pickup)
+* size: String (options: "Small", Medium", "Large")
+* toppings: String (options: "Cheese", "Pepperoni", "Hawaiian", "Veggie")
+* ready: Boolean (indicates if order is ready for pickup)
+
+The app also has three separate views, once for each employee type in the company. The `Cashier` can input new orders into the database. The `Baker` can view an index of orders arranged by pickup time (earliest first), and can edit the ready status of the order. The `Manager` can also view an index of orders arranged by the date and time the order was placed.
+
+Due to the difficulty of properly downgrading Ruby and Rails locally (i.e. not just in the Gemfile), I initially built the app in a separate GitHub repo using Rails 5.1 and Ruby 2.4.2. I then migrated my MVC into this repo once I had learned how to properly configure Ruby 2.3.4 and Rails 4.2.8 onto my local machine using rvm. I used these versions of Ruby and Rails at the recommendation of GitHub, who warned me about security issues in earlier versions.
+
+## Future Development
+* Use bCrypt for auth login, and set up accounts for each person who worked at the pizzeria.
+* Fix the baker/manager pickup time view to 12-hour clock.
+* Create join tables in the database for multiple pizzas per order, and a table to keep track of which cashier placed an order, and which baker made the pizza.
 
 ## Versions
 * **Ruby:** 2.3.4
