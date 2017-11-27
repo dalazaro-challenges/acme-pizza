@@ -32,6 +32,7 @@ class OrdersController < ApplicationController
 
   def update
     order = Order.find_by_id(params[:id])
+    order.pickup = Time.parse "#{order_params[:time]}"
     order.update_attributes(order_params)
     flash[:notice] = 'Order updated.'
     redirect_to orders_path(order)
@@ -48,5 +49,5 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(:name, :phone, :time, :size, :toppings, :ready)
   end
-  
+
 end
