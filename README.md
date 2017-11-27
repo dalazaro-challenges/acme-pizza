@@ -22,7 +22,7 @@ The `Order` schema includes the following properties:
 * toppings: String (options: "Cheese", "Pepperoni", "Hawaiian", "Veggie")
 * ready: Boolean (indicates if order is ready for pickup)
 
-The app also has three separate views, once for each employee type in the company. The `Cashier` can input new orders into the database. The `Baker` can view an index of orders arranged by pickup time (earliest first), and can edit the ready status of the order. The `Manager` can view an index of orders arranged by the date and time the order was placed, and can delete orders as needed.
+The app also has three separate views, once for each employee type in the company. The `Cashier` can input new orders into the database. The `Baker` can view a list of orders, and can edit the status of the order or cancel it entirely. The `Manager` can also view a list of the order history. The `Baker` and `Manager` views use the same partial `ordertable`, but the list is arranged differently for each user: the `Baker` list is filtered by pickup time (earliest pickup up top) while the `Manager` view is filtered by the time the order was placed.
 
 Due to the difficulty of properly downgrading Ruby and Rails locally (i.e. not just in the Gemfile), I initially built the app in a separate GitHub repo using Rails 5.1 and Ruby 2.4.2. I then migrated my MVC into this repo once I had learned how to properly configure Ruby 2.3.4 and Rails 4.2.8 onto my local machine using rvm. I used these versions of Ruby and Rails at the recommendation of GitHub, who warned me about security issues in earlier versions.
 
